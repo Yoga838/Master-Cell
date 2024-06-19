@@ -46,7 +46,7 @@ class cartController extends Controller
     public function index(){
 
         $cartItems = DB::table('cart as c')
-        ->join('cartitem as ci', 'ci.cart_id', '=', 'c.id')
+        ->join('cartItem as ci', 'ci.cart_id', '=', 'c.id')
         ->join('barang as bm', 'bm.id', '=', 'ci.barang_model_id')
         ->where('c.user_id', Auth::user()->id)
         ->get();
