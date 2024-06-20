@@ -37,37 +37,37 @@
                     <ion-icon name="download-outline"></ion-icon> Ekspor
                 </button>
             </div>
-        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-            <thead>
-                <tr>
-                    <th>No.</th>
-                    <th>Nama Barang</th>
-                    <th>Harga Ambil</th>
-                    <th>Harga Jual</th>
-                    <th>Stok</th>
-                    <th>foto produk</th>
-                    <th>edit</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($data as $item)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->nama_barang }}</td>
-                        <td>{{ $item->Harga_ambil }}</td>
-                        <td>{{ $item->Harga_jual }}</td>
-                        <td>{{ $item->stok }}</td>
-                        <td ><img src="{{ asset('fotoproduk/'.$item->foto_produk) }}" alt="foto produk" width="100px"></td>
-                        <td class="d-flex gap-4">
-                            <button class="btn btn-primary d-flex align-items-center" type="button" aria-expanded="false" data-toggle="modal" data-target="#modalEdit{{ $item->id }}">
-                                <ion-icon name="create-outline"></ion-icon>
-                            </button>
-                            <button class="btn btn-danger waves-effect deleteBtn d-flex align-items-center" data-id="{{ $item->id }}"><ion-icon name="trash-outline"></ion-icon></button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th data-priority="1">No.</th>
+                                <th data-priority="1">Nama Barang</th>
+                                <th data-priority="2">Harga Ambil</th>
+                                <th data-priority="2">Harga Jual</th>
+                                <th data-priority="2">Stok</th>
+                                <th data-priority="3">foto produk</th>
+                                <th data-priority="1">edit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nama_barang }}</td>
+                                    <td>{{ $item->Harga_ambil }}</td>
+                                    <td>{{ $item->Harga_jual }}</td>
+                                    <td>{{ $item->stok }}</td>
+                                    <td ><img src="{{ asset('fotoproduk/'.$item->foto_produk) }}" alt="foto produk" width="100px"></td>
+                                    <td class="d-flex gap-4">
+                                        <button class="btn btn-primary d-flex align-items-center" type="button" aria-expanded="false" data-toggle="modal" data-target="#modalEdit{{ $item->id }}">
+                                            <ion-icon name="create-outline"></ion-icon>
+                                        </button>
+                                        <button class="btn btn-danger waves-effect deleteBtn d-flex align-items-center" data-id="{{ $item->id }}"><ion-icon name="trash-outline"></ion-icon></button>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
         @endif
         @if(Auth::user()->role == 'pegawai')
         <div class="row d-flex justify-content-end mb-2">

@@ -16,10 +16,10 @@
         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
                 <tr>
-                    <th>No.</th>
-                    <th>Username</th>
-                    <th>Tanggal</th>
-                    <th>View</th>
+                    <th data-priority="1">No.</th>
+                    <th data-priority="1">Username</th>
+                    <th data-priority="2">Tanggal</th>
+                    <th data-priority="1">View</th>
                 </tr>
             </thead>
             <tbody>

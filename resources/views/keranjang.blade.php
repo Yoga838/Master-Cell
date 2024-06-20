@@ -16,12 +16,12 @@
         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
                 <tr>
-                    <th>No.</th>
-                    <th>Nama Barang</th>
-                    <th>Harga</th>
-                    <th>Quantity</th>
-                    <th>Harga Total</th>
-                    <th>Action</th>
+                    <th data-priority="1">No.</th>
+                    <th data-priority="1">Nama Barang</th>
+                    <th data-priority="2">Harga</th>
+                    <th data-priority="2">Quantity</th>
+                    <th data-priority="2">Harga Total</th>
+                    <th data-priority="1">Action</th>
                 </tr>
             </thead>
             <tbody>

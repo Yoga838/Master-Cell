@@ -14,11 +14,11 @@
             <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Nama Pengguna</th>
-                        <th>Username</th>
-                        <th>Role</th>
-                        <th>Edit</th>
+                        <th data-priority="1">No.</th>
+                        <th data-priority="1">Nama Pengguna</th>
+                        <th data-priority="2">Username</th>
+                        <th data-priority="2">Role</th>
+                        <th data-priority="1">Edit</th>
                     </tr>
                 </thead>
                 <tbody>
