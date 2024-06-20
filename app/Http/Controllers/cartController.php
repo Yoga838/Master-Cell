@@ -120,4 +120,14 @@ class cartController extends Controller
             return response()->json(['error' => $th->getMessage()]);
         }
     }
+    public function viewHistory(){
+        $data = DB::table('transaction_history as th')
+        ->join('transaction as thx', 'th.transaction_id', '=', 'thx.id')
+        ->join('barang as b', 'b.id', '=', 'thx.barang_model_id')
+        ->join('users as u', 'u.id', '=', 'thx.user_id')
+        ->orderBy('thx.created_at', 'desc')
+        ->get();
+
+        return view('history', compact('data'));
+    }
 }

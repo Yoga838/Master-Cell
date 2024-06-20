@@ -44,9 +44,7 @@ Route::middleware('auth')->group(function(){
     Route::put('/stock-barang/{id}',[barangController::class, 'update'])->name('update-barang');
     Route::get('/stock-barang/export',[barangController::class, 'export'])->name('export-barang');
 
-    Route::get('/history', function () {
-        return view('history');
-    });
+    Route::get('/history', [cartController::class, 'viewHistory'])->name('view-history');
 
     Route::get('keranjang',[cartController::class, 'index'])->name('keranjang');
     Route::post('add-chart',[cartController::class, 'add'])->name('add-chart');
