@@ -23,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/pengguna', [UserModelController::class, 'destroy'])->name('delete-pengguna');
 Route::post('/stock-barang', [barangController::class, 'destroy'])->name('delete-barang');
+Route::post('/keranjang', [cartController::class, 'delete'])->name('delete-chart');

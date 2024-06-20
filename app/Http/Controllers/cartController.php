@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\barangModel;
 use App\Models\cart;
 use App\Models\cartItem;
+use App\Models\transaction;
+use App\Models\transactionHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,6 +46,41 @@ class cartController extends Controller
         }
         
     }
+    public function checkout(Request $request)
+    {
+        $cart = Cart::where('user_id', Auth::user()->id)->first();
+        if (!$cart) {
+            return response()->json(['error' => 'Cart not found'], 404);
+        }
+
+        DB::transaction(function () use ($cart) {
+            foreach ($cart->cartItems as $cartItem) {
+                $item = barangModel::find($cartItem->barang_model_id);
+
+                if ($item->stok < $cartItem->quantity) {
+                    throw new \Exception('Item not available or insufficient quantity');
+                }
+                $transaction = transaction::create([
+                    'user_id' => $cart->user_id,
+                    'barang_model_id' => $cartItem->barang_model_id,
+                    'quantity' => $cartItem->quantity,
+                ]);
+
+                $item->stok -= $cartItem->quantity;
+                $item->save();
+
+                transactionHistory::create([
+                    'transaction_id' => $transaction->id,
+                    'action' => 'create',
+                ]);
+            }
+
+            CartItem::where('cart_id', $cart->id)->delete();
+            $cart->delete();
+        });
+
+        return response()->json(['message' => 'Checkout successful'], 201);
+    }
     public function index(){
 
         $cartItems = DB::table('cart as c')
@@ -53,5 +91,33 @@ class cartController extends Controller
 
         return view('keranjang', compact('cartItems'));
     }
+    public function delete(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'user_id' => 'required',
+                'barang_model_id' => 'required',
+            ]);
 
+            $cart = Cart::where('user_id',intval($validatedData['user_id']))->first();
+
+            if (!$cart) {
+                return response()->json(['error' => 'Cart not found'], 404);
+            }
+
+            $cartItem = CartItem::where('cart_id', $cart->id)
+                                ->where('barang_model_id', $validatedData['barang_model_id'])
+                                ->first();
+
+            if (!$cartItem) {
+                return response()->json(['error' => 'Item not found in cart'], 404);
+            }
+
+            $cartItem->delete();
+
+            return response()->json(['success' => 'Item removed from cart']);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()]);
+        }
+    }
 }

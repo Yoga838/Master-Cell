@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function(){
 
     Route::get('keranjang',[cartController::class, 'index'])->name('keranjang');
     Route::post('add-chart',[cartController::class, 'add'])->name('add-chart');
+    Route::post('checkout',[cartController::class, 'checkout'])->name('checkout');
     
 
 });
