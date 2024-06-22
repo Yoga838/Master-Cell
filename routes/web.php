@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\barangController;
 use App\Http\Controllers\cartController;
+use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\UserModelController;
 use Illuminate\Support\Facades\Route;
@@ -31,9 +32,7 @@ Route::post('/login', [loginController::class, 'login'])->name('login');
 Route::middleware('auth')->group(function(){
     Route::get('/logout',[loginController::class, 'logout'])->name('logout');
 
-    Route::get('/Dashboard', function () {
-        return view('dashboard');
-    });
+    Route::get('/Dashboard', [dashboardController::class, 'index'])->name('dashboard');
     Route::get('/pengguna', [UserModelController::class, 'show'])->name('show-pengguna');
     Route::post('/pengguna', [UserModelController::class, 'store'])->name('add-pengguna');
     Route::put('/pengguna/{id}', [UserModelController::class, 'update'])->name('update-pengguna');
