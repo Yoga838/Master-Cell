@@ -48,6 +48,9 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('profil') }}"><ion-icon name="person-circle-outline" size="large"></ion-icon></a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
         </a>

@@ -4,6 +4,7 @@ use App\Http\Controllers\barangController;
 use App\Http\Controllers\cartController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\loginController;
+use App\Http\Controllers\profileController;
 use App\Http\Controllers\UserModelController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -49,5 +50,6 @@ Route::middleware('auth')->group(function(){
     Route::post('add-chart',[cartController::class, 'add'])->name('add-chart');
     Route::post('checkout',[cartController::class, 'checkout'])->name('checkout');
     
-
+    Route::get('/profil',[profileController::class, 'index'])->name('profil');
+    Route::put('/profil/{id}',[UserModelController::class, 'edit'])->name('update-profil');
 });

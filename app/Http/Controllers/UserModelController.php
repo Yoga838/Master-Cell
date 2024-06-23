@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Cache\RedisTagSet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Rap2hpoutre\FastExcel\FastExcel;
 
@@ -66,16 +67,35 @@ class UserModelController extends Controller
      */
     public function show()
     {
-        $data = User::get();
+        $data = User::where('id', '!=', Auth::user()->id)
+        ->get();
         return view('pengguna', compact('data'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit()
+    public function edit(Request $request, $id)
     {
-        //
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'username' => 'required|string|max:255'
+            ]);
+            if($request->password != null){
+                $validatedData['password'] = Hash::make($request->password);
+            }
+            $find = User::findOrFail($id);
+            if($find){
+                $find->update($validatedData);
+                return redirect('/profil')->with('success', 'Profil Berhasil di Update!');
+            }
+            return redirect('/profil')->with('error', 'Pengguna gagal di Update!');
+        } catch (\Throwable $th) {
+            return redirect('/profil')->with('error', 'Pengguna gagal di Update!' .  $th->getMessage());
+        }
+
+
     }
 
     /**
@@ -93,11 +113,11 @@ class UserModelController extends Controller
             $find = User::findOrFail($id);
             if($find){
                 $find->update($validatedData);
-                return redirect('/pengguna')->with('success', 'Pengguna Berhasil!');
+                return redirect('/pengguna')->with('success', 'Pengguna Berhasil di Update!');
             }
-            return redirect('/pengguna')->with('error', 'Pengguna gagal Dihapus!');
+            return redirect('/pengguna')->with('error', 'Pengguna gagal Di Update!');
         } catch (\Throwable $th) {
-            return redirect('/pengguna')->with('error', 'Pengguna gagal Dihapus!' .  $th->getMessage());
+            return redirect('/pengguna')->with('error', 'Pengguna gagal Di Update!' .  $th->getMessage());
         }
     }
 

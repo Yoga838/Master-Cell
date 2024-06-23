@@ -26,7 +26,7 @@
                 @foreach ($data as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->username }}</td>
+                        <td>{{ $item->name }}</td>
                         <td>{{ $item->created_at }}</td>
                         <td class="d-flex gap-4">
                             <button class="btn btn-primary d-flex align-items-center" type="button" aria-expanded="false" data-toggle="modal" data-target="#modalEdit{{ $item->id }}">
