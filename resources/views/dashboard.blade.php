@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="row">
-            <div id="myChart"></div>
+            <div class="mx-auto col-xl-9" id="myChart"></div>
         </div>
     </section>
 @endsection()
@@ -39,6 +39,7 @@
       xkey: ['created_month'],
       ykeys: ['total_penjualan'],
       labels: ['Total Penjualan'],
+      hideHover: 'auto',
       stacked : false,
       yLabelFormat : function(y) {return Math.round(y)},
     });
