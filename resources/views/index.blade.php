@@ -19,7 +19,7 @@
     </div>
 </section>
 {{-- hero 3 --}}
-<section class="container mx-auto row section3 mt-5">
+<section id="product" class="container mx-auto row section3 mt-5">
     <h1 class="fw-bolder text-white text-center">Produk Kami</h1>
     <div class="konten-produk row mt-5 d-flex justify-content-center gap-5">
 
@@ -97,7 +97,7 @@
 @endsection
 @section('footer')
   {{-- footer --}}
-  <footer class="row border-top border-white mt-5 pt-5">
+  <footer id="contact" class="row border-top border-white mt-5 pt-5">
     <div class="information d-flex justify-content-between">
         <div class="left-information ms-4 text-white">
             <h3>Master Cell</h3>

@@ -26,13 +26,10 @@
         <div class="collapse navbar-collapse" id="navbarDark">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Product</a>
+                    <a class="nav-link" href="/#product">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" href="/#contact">Contact</a>
                 </li>
             </ul>
         <a href="/login" class="btn text-white rounded-pill fw-bolder"  style="background-color: #FE5C04 ">Login</a>
