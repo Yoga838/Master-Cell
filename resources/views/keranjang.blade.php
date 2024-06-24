@@ -9,9 +9,6 @@
                 <button class="btn btn-success mx-2 d-flex align-items-center " type="button" id="btnCheckout">
                     <ion-icon name="bag-check-outline"></ion-icon> Checkout
                 </button>
-                <button onclick="window.location.href='/pengguna/export'" class="btn btn-primary d-flex align-items-center" type="button" aria-expanded="false" onclick="window.location.href='/export-users'">
-                    <ion-icon name="download-outline"></ion-icon> Ekspor
-                </button>
             </div>
         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
             <thead>
